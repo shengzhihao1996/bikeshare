@@ -36,18 +36,7 @@ def get_filters():
 
     day_id = input("please to choose one index to start  analysis of data, index:")
     days = ['all', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-    ###### debug input:
-    # # city = "chicago"
-    # # month = "january"
-    # # day = "Monday"
-    # # month = "all"
-    # # day = "all"
-    # # city = "new york city"
-    # # month = "february"
-    # # day = "Tuesday"
-    # city = "washington"
-    # month = "february"
-    # day = "Tuesday"
+
     print('-'*40)
     return citys[int(city_id)], months[int(month_id)], days[int(day_id)]
 
@@ -88,9 +77,6 @@ def load_data(city, month, day):
     if day != 'all':
         # filter by day of week to create the new dataframe
         df = df[df['day_of_week'] == day]
-        #print(day.title())
-    # print(df.isnull().sum())
-
 
     return df
 
@@ -164,7 +150,6 @@ def user_stats(df,city):
 
     # TO DO: Display counts of user types
     print("The most common User Types is : " + df['User Type'].mode()[0] + ".")
-    #print(df)
 
     # TO DO: Display counts of gender
     if 'Gender' in df.columns:
@@ -180,15 +165,11 @@ def user_stats(df,city):
     else:
         print("The " + city + "'s dataframe doesn't have column named Birth Year.")
 
-
-
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
-
 def main():
-    # while True:
-    # get_filters()
+    while True:
         city, month, day = get_filters()
         df = load_data(city, month, day)
 
@@ -198,9 +179,9 @@ def main():
         trip_duration_stats(df)
         user_stats(df,city)
 
-        # restart = input('\nWould you like to restart? Enter yes or no.\n')
-        # if restart.lower() != 'yes':
-        #     break
+        restart = input('\nWould you like to restart? Enter yes or no.\n')
+        if restart.lower() != 'yes':
+            break
 
 
 if __name__ == "__main__":
